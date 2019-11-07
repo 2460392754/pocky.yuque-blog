@@ -1,17 +1,43 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './modules/app.module';
-import { HttpExceptionFilter } from './filters/error.filter';
-import { TransformInterceptor } from './interceptors/transform.interceptor';
-import { ValidationPipe } from './pipe/validation.pipe';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { AppModule } from './app/app.module';
+import { swagger } from './swagger';
+import { ExceptionsFilter, TransformInterceptor, ValidationPipe } from './core';
+import { LoggerService } from './common';
+declare const module: any;
 
-async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
+// main
+(async () => {
+    const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+        cors: true
+    });
 
-    app.useGlobalFilters(new HttpExceptionFilter());
-    app.useGlobalInterceptors(new TransformInterceptor());
-    app.useGlobalPipes(new ValidationPipe());
+    hmr(app);
+    swagger(app);
+    useGlobal(app);
     await app.listen(3000);
 
-    console.log('service: http://localhost:3000');
+    console.log('http://localhost:3000');
+})();
+
+/**
+ * webpack: 热更新
+ * @param app
+ */
+function hmr(app) {
+    if (module.hot) {
+        module.hot.accept();
+        module.hot.dispose(() => app.close());
+    }
 }
-bootstrap();
+
+/**
+ * 注册到全局
+ * @param app
+ */
+function useGlobal(app) {
+    app.useGlobalFilters(new ExceptionsFilter());
+    app.useGlobalInterceptors(new TransformInterceptor());
+    app.useGlobalPipes(new ValidationPipe());
+    app.useLogger(app.get(LoggerService));
+}
