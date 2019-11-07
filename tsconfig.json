@@ -1,15 +1,15 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "declaration": true,
-        "removeComments": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "target": "es2017",
-        "sourceMap": true,
-        "outDir": "./dist",
-        "baseUrl": "./",
-        "incremental": true
+        "module": "commonjs", // 指定生成哪个模块系统代码
+        "declaration": false, // 生成相应的 .d.ts文件
+        "removeComments": true, // 删除所有注释，除了以 /!*开头的版权信息。
+        "emitDecoratorMetadata": true, // 在表达式和声明上有隐含的any类型时报错
+        "experimentalDecorators": true, // 启用实验性的ES装饰器。
+        "target": "es2017", // 指定ECMAScript目标版本
+        "sourceMap": false, // 生成相应的.map文件
+        "outDir": "./dist", // 重定向输出目录
+        "baseUrl": "./", // 解析非相对模块名的基准目录
+        "incremental": true // 更快地进行后续构建
     },
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["node_modules", "dist"] // 不包含的编译目录
 }
