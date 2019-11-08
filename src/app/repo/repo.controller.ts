@@ -4,6 +4,8 @@ import { HeadersDecorator } from '../../common';
 import {
     GetInfoQueryDto,
     GetInfoHeadersDto,
+    GetlistQueryDto,
+    GetListHeadersDto,
     GetInfoTocQueryDto,
     GetInfoTocHeadersDto,
     GetInfoSearchQueryDto,
@@ -32,6 +34,24 @@ export class RepoController {
         const { token } = headers;
 
         return this.repoService.getInfo(repoId, token);
+    }
+
+    /**
+     * 获取某个用户/组织的仓库列表
+     * @param query
+     * @param headers
+     * @param h
+     */
+    @Get('list')
+    getList(
+        @Query() query: GetlistQueryDto,
+        @HeadersDecorator() headers: GetListHeadersDto,
+        @Headers() h: GetListHeadersDto
+    ) {
+        const { userId } = query;
+        const { token } = headers;
+
+        return this.repoService.getList(userId, token);
     }
 
     /**

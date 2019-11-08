@@ -21,6 +21,19 @@ export class RepoService {
     }
 
     /**
+     * 获取某个用户/组织的仓库列表
+     * @param userId 用户id
+     * @param token 语雀token
+     */
+    getList(userId: string, token: string | undefined) {
+        return this.curlService.get(`/users/${userId}/repos`, {
+            headers: token && {
+                'X-Auth-Token': token
+            }
+        });
+    }
+
+    /**
      * 获取一个仓库的目录结构
      * @param repoId 仓库id
      * @param token 语雀token
