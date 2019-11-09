@@ -1,0 +1,49 @@
+@import './theme.less';
+
+@default-color: #515a6e;
+@red-color: #f26d6d;
+@blue-color: #2196f3;
+@green-color: #3eaf7c;
+@yellow-color: #fb9b5f;
+
+.theme-default {
+    .theme(@default-color);
+}
+
+.theme-red {
+    .theme(@red-color);
+}
+
+.theme-blue {
+    .theme(@blue-color);
+}
+
+.theme-green {
+    .theme(@green-color);
+}
+
+.theme-yellow {
+    .theme(@yellow-color);
+}
+
+.base-theme {
+    .default {
+        background: @default-color;
+    }
+
+    .red {
+        background: @red-color;
+    }
+
+    .blue {
+        background: @blue-color;
+    }
+
+    .green {
+        background: @green-color;
+    }
+
+    .yellow {
+        background: @yellow-color;
+    }
+}

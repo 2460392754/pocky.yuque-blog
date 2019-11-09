@@ -1,0 +1,112 @@
+/* "yuque" table css*/
+.lake-table-selected {
+    outline: 2px solid #1890ff;
+}
+.lake-table {
+    position: relative;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    word-wrap: break-word;
+    word-break: normal;
+    margin: 0;
+    font-weight: 400;
+    box-sizing: border-box;
+    border: 1px solid #d9d9d9;
+    cursor: default;
+    width: 96%;
+}
+.lake-table.drag-select {
+    cursor: nwse-resize;
+}
+.lake-table.drag-select.drag_n {
+    cursor: ns-resize;
+}
+.lake-table.drag-select.drag_s {
+    cursor: ns-resize;
+}
+.lake-table.drag-select.drag_w {
+    cursor: ew-resize;
+}
+.lake-table.drag-select.drag_e {
+    cursor: ew-resize;
+}
+.lake-table.drag-select.drag_nw {
+    cursor: nwse-resize;
+}
+.lake-table.drag-select.drag_se {
+    cursor: nwse-resize;
+}
+.lake-table.drag-select.drag_n td {
+    cursor: ns-resize;
+}
+.lake-table.drag-select.drag_s td {
+    cursor: ns-resize;
+}
+.lake-table.drag-select.drag_w td {
+    cursor: ew-resize;
+}
+.lake-table.drag-select.drag_e td {
+    cursor: ew-resize;
+}
+.lake-table.drag-select.drag_nw td {
+    cursor: nwse-resize;
+}
+.lake-table.drag-select.drag_se td {
+    cursor: nwse-resize;
+}
+.lake-table tbody,
+.lake-table tr,
+.lake-table th,
+.lake-table td {
+    margin: 0;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+.lake-table tr {
+    height: 33px;
+}
+.lake-table tr th,
+.lake-table tr td {
+    min-width: 90px;
+    font-size: 14px;
+    white-space: normal;
+    word-wrap: break-word;
+    border: 1px solid #d9d9d9;
+    vertical-align: top;
+    padding: 4px 8px;
+    cursor: default;
+}
+.lake-table .CodeMirror {
+    padding: 16px;
+}
+.lake-card-block-max[data-lake-card='table'] .lake-table {
+    background: #fff;
+}
+.lake-card-block-max[data-lake-card='table'] div[data-card-element='center'] {
+    padding: 20px;
+    min-height: auto !important;
+}
+.lake-card-block-max[data-lake-card='table'] .lake-table-reader {
+    margin-top: 0;
+}
+.lake-card-block-max[data-lake-card='table'] .table-wrapper {
+    margin-left: 20px;
+}
+.lake-table-reader {
+    padding-right: 20px;
+    overflow: auto;
+    padding-bottom: 0px !important;
+}
+.lake-table-reader tr:first-child [data-lake-card='file'] .lake-embed-toolbar-block {
+    top: 24px;
+}
+.lake-table-reader + .lake-scrollbar.lake-scrollbar-x {
+    bottom: 22px;
+}
+.lake-table-reader .scrollbar-shadow-left {
+    bottom: 10px;
+}
+.lake-table-reader .scrollbar-shadow-right {
+    bottom: 10px;
+}

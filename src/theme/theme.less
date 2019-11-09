@@ -1,0 +1,24 @@
+.theme(@color) {
+    @import '~view-design/src/styles/index.less';
+
+    @primary-color: @color; // 主色
+    @layout-header-background: @color;
+    @menu-dark-title: @color;
+
+    // 自定义颜色
+    .pocky-theme-color {
+        color: fade(@color, 75%);
+    }
+
+    // slider 里面的 menu组件
+    .ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
+    .ivu-menu-vertical .ivu-menu-item:hover,
+    .ivu-menu-vertical .ivu-menu-submenu-title:hover {
+        color: @color;
+        background: fade(@color, 8%);
+
+        &:after {
+            background: @color;
+        }
+    }
+}
