@@ -1,14 +1,14 @@
 const CompressionPlugin = require('compression-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const isProduction = process.env.NODE_ENV === 'production'; // 是否是生产环境
+const path = require('path');
 const CDN = {
     js: [
         'https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js',
-        'https://cdn.jsdelivr.net/npm/vue-router@3.1.3/dist/vue-router.min.js',
-    ],
-    css: [
-        'https://cdn.jsdelivr.net/npm/view-design@4.0.2/dist/styles/iview.css'
+        'https://cdn.jsdelivr.net/npm/vue-router@3.1.3/dist/vue-router.min.js'
+        // 'https://cdn.jsdelivr.net/npm/view-design@4.0.2/dist/iview.min.js'
     ]
+    // css: ['https://cdn.jsdelivr.net/npm/view-design@4.0.2/dist/styles/iview.css']
 };
 
 module.exports = {
@@ -40,8 +40,8 @@ module.exports = {
                 // cdn预加载使用
                 externals: {
                     vue: 'Vue',
-                    'vue-router': 'VueRouter',
-                    'view-design': 'ViewDesign'
+                    'vue-router': 'VueRouter'
+                    // 'view-design': 'ViewDesign'
                 }
             };
         }
@@ -75,6 +75,13 @@ module.exports = {
             less: {
                 javascriptEnabled: true
             }
+        }
+    },
+
+    pluginOptions: {
+        'style-resources-loader': {
+            preProcessor: 'less',
+            patterns: [path.resolve(__dirname, 'src/theme/varibles.less')]
         }
     }
 };

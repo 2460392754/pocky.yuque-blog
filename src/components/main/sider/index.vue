@@ -1,24 +1,28 @@
 <template>
     <Sider :width="300" hide-trigger :class="[isShow ? 'is-show' : '']">
-        <Menu
-            :active-name="activeName"
-            theme="light"
-            width="auto"
-            :open-names="['1']"
-            @on-select="changeMenuItem"
-        >
-            <v-menu :data="data" />
-        </Menu>
+        <v-scroll-bar>
+            <Menu
+                :active-name="activeName"
+                theme="light"
+                width="auto"
+                :open-names="['1']"
+                @on-select="changeMenuItem"
+            >
+                <v-menu :data="data" />
+            </Menu>
+        </v-scroll-bar>
     </Sider>
 </template>
 
 <script>
 import { getRepoTocApi } from '@/api/repo';
 import VMenu from './menu';
+import VScrollBar from '../../scrollbar';
 
 export default {
     components: {
-        VMenu
+        VMenu,
+        VScrollBar
     },
 
     data() {
@@ -108,12 +112,11 @@ export default {
 <style lang='less' scoped>
 .ivu-layout-sider {
     background: #fff;
-    // transform: translateX(-300px - 24px);
-    margin: 24px 0 24px 24px;
-    margin-left: -300px;
+    margin: 24px 0 24px -300px;
+    transition: margin 0.5s;
+    // overflow-y: auto;
 
     &.is-show {
-        // transform: translateX(0px);
         margin-left: 24px;
     }
 

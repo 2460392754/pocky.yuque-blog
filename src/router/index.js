@@ -9,6 +9,7 @@ const router = new Router({
             redirect: '/index',
             component: () => import('@/layout/index'),
             children: [
+                // project
                 {
                     path: '/index',
                     name: 'index',
@@ -20,6 +21,17 @@ const router = new Router({
                     component: () => import('@/views/doc')
                 }
             ]
+        },
+        // error
+        {
+            path: '/500',
+            name: '500',
+            component: () => import('@/views/error/500')
+        },
+        {
+            path: '*',
+            name: '404',
+            component: () => import('@/views/error/404')
         }
     ]
 });

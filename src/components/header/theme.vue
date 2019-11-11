@@ -34,6 +34,10 @@ export default {
         };
     },
 
+    created() {
+        this.$_localTempTheme();
+    },
+
     mounted() {
         this.$_addBodyClass(this.curMenuName);
     },
@@ -47,6 +51,7 @@ export default {
             this.$_removeBodyClass(this.curMenuName);
             this.$_addBodyClass(name);
             this.curMenuName = name;
+            localStorage.setItem('theme', name);
         },
 
         /**
@@ -64,6 +69,13 @@ export default {
 
         $_removeBodyClass(type) {
             this.$_getBodyClassList('remove', 'theme-' + type);
+        },
+
+        // 获取本地
+        $_localTempTheme() {
+            const name = localStorage.getItem('theme');
+
+            name && this.change(name);
         }
     }
 };

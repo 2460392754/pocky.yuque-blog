@@ -20,3 +20,19 @@ export default {
     }
 };
 </script>
+
+<style lang="less">
+.ivu-layout-sider-children {
+    .ivu-menu-item {
+        display: flex;
+        align-items: center;
+
+        span {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: block;
+        }
+    }
+}
+</style>

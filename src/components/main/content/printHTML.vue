@@ -2,7 +2,7 @@
     <div class="component-printHTML">
         <h1>{{title}}</h1>
         <Divider />
-        <div v-highlightjs v-html="html"></div>
+        <div v-highlightjs class="content" v-html="html"></div>
     </div>
 </template>
 
@@ -45,16 +45,17 @@ export default {
                 const data = decodeURIComponent(wrod);
                 const cardValue = data.substring(12, data.length - 9);
                 const json = JSON.parse(cardValue);
-
-                // console.log(json);
-
                 let { code, mode, src, width, html } = json;
 
                 if (typeof code !== 'undefined') {
                     return this.$_formatTypeCode(mode, code);
-                } else if (typeof src !== 'undefined') {
+                }
+
+                if (typeof src !== 'undefined') {
                     return `><img alt="img" width="${width}" src="${src}"/></card>`;
-                } else if (typeof html !== 'undefined') {
+                }
+
+                if (typeof html !== 'undefined') {
                     return `>${html}</card>`;
                 }
             });
@@ -62,7 +63,6 @@ export default {
 
         $_formatType(json) {
             // if()
-
         },
 
         // 根据类型格式化
@@ -86,6 +86,8 @@ export default {
 </script>
 
 <style lang="less">
+@import '~@/theme/varibles.less';
+
 .component-printHTML {
     ol,
     ul {
@@ -93,12 +95,53 @@ export default {
     }
 
     img {
-        // width: 100%;
         max-width: 800px;
     }
 
     a {
         word-break: break-word;
+    }
+
+    .content {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            cursor: pointer;
+            display: table;
+            position: relative;
+
+            &:after {
+                content: '';
+                height: 3px;
+                width: 0;
+                display: block;
+                transition: all 0.5s;
+                margin-bottom: 5px;
+            }
+
+            &:before {
+                content: '#';
+                position: absolute;
+                transform: translateX(0px);
+                padding-right: 5px;
+                transition: all 0.5s;
+                opacity: 0;
+            }
+
+            &:hover {
+                &:after {
+                    width: 100%;
+                }
+
+                &:before {
+                    opacity: 1;
+                    transform: translateX(-100%);
+                }
+            }
+        }
     }
 }
 </style>

@@ -1,12 +1,16 @@
 <template>
     <div class="doc-page">
         <v-print-html v-if="isShow" :title="title" :content="html" />
+        <Divider />
+        <p>创建时间: {{time.create}}</p>
+        <p>更新时间: {{time.update}}</p>
     </div>
 </template>
 
 <script>
 import { getDocInfoApi } from '../api/doc';
 import VPrintHtml from '../components/main/content/printHTML';
+import { formatDate } from '@/utils';
 
 export default {
     components: {
@@ -18,7 +22,11 @@ export default {
             title: null,
             html: null,
             isShow: false,
-            docId: null
+            docId: null,
+            time: {
+                create: null,
+                update: null
+            }
         };
     },
 
@@ -51,16 +59,19 @@ export default {
             // 重写渲染 `VPrintHtml` 组件
             this.$nextTick(() => {
                 this.isShow = true;
+                this.$store.commit('updateDocRenderDone');
             });
         },
 
         // 发送请求获取文档
         $_getDocInfoApi(repoId) {
             return getDocInfoApi(repoId, this.docId).then((res) => {
-                const { title, body_lake } = res;
+                const { title, body_lake, created_at, updated_at } = res;
 
                 this.html = body_lake;
                 this.title = title;
+                this.time.create = formatDate(created_at);
+                this.time.update = formatDate(updated_at);
             });
         },
 

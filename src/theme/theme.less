@@ -1,13 +1,24 @@
 .theme(@color) {
-    @import '~view-design/src/styles/index.less';
+    // @import '~view-design/src/styles/index.less';
 
-    @primary-color: @color; // 主色
-    @layout-header-background: @color;
-    @menu-dark-title: @color;
+    // @primary-color: @color; // 主色
+    // @layout-header-background: @color;
+    // @menu-dark-title: @color;
 
     // 自定义颜色
     .pocky-theme-color {
         color: fade(@color, 75%);
+    }
+
+    // header
+    .ivu-menu-dark,
+    .ivu-layout-header {
+        background: @color;
+    }
+
+    .ivu-btn-primary {
+        background-color: @color;
+        border-color: @color;
     }
 
     // slider 里面的 menu组件
@@ -19,6 +30,33 @@
 
         &:after {
             background: @color;
+        }
+    }
+
+    // h~标签
+    .component-printHTML {
+        .content {
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                &:after {
+                    background: @color;
+                }
+
+                &:before {
+                    color: @color;
+                }
+            }
+        }
+    }
+
+    .component-error-content {
+        h4,
+        h5 {
+            color: @color;
         }
     }
 }
