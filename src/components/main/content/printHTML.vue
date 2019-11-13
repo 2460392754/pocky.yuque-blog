@@ -1,14 +1,15 @@
 <template>
     <div class="component-printHTML">
-        <h1>{{title}}</h1>
+        <h4 class="ascription">{{ ascription }}</h4>
+        <h1>{{ title }}</h1>
         <Divider />
 
         <div v-highlightjs class="content" v-html="html"></div>
 
         <Divider />
         <div class="time">
-            <p>创建时间: {{createTime}}</p>
-            <p>更新时间: {{updateTime}}</p>
+            <p>创建时间: {{ createTime }}</p>
+            <p>更新时间: {{ updateTime }}</p>
         </div>
     </div>
 </template>
@@ -16,18 +17,27 @@
 <script>
 export default {
     props: {
+        // 归属仓库名称
+        ascription: {
+            type: String,
+            default: ''
+        },
+        // 文档标题
         title: {
             type: String,
             default: 'title'
         },
+        // 文档内容
         content: {
             type: String,
             default: ''
         },
+        // 创建时间
         createTime: {
             type: String,
             default: ''
         },
+        //  更新时间
         updateTime: {
             type: String,
             default: ''
@@ -74,10 +84,6 @@ export default {
                     return `>${html}</card>`;
                 }
             });
-        },
-
-        $_formatType(json) {
-            // if()
         },
 
         // 根据类型格式化
@@ -148,6 +154,11 @@ export default {
     .actionscript {
         display: inline-block;
         vertical-align: middle;
+    }
+
+    .ascription {
+        margin-bottom: 10px;
+        color: #808695;
     }
 }
 </style>

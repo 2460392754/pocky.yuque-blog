@@ -1,10 +1,10 @@
 <template>
     <div class="doc-page">
         <Spin v-if="!html" fix></Spin>
-        <!-- <v-back-top /> -->
 
         <v-print-html
             v-if="isShow"
+            :ascription="ascription"
             :title="title"
             :content="html"
             :create-time="time.create"
@@ -17,16 +17,15 @@
 import { getDocInfoApi } from '../api/doc';
 import VPrintHtml from '../components/main/content/printHTML';
 import { formatDate } from '@/utils';
-// import VBackTop from '../components/main/content/backTop';
 
 export default {
     components: {
-        VPrintHtml,
-        // VBackTop
+        VPrintHtml
     },
 
     data() {
         return {
+            ascription: null,
             title: null,
             html: null,
             isShow: false,
@@ -74,10 +73,17 @@ export default {
         // 发送请求获取文档
         $_getDocInfoApi(repoId) {
             return getDocInfoApi(repoId, this.docId).then((res) => {
-                const { title, body_lake, created_at, updated_at } = res;
+                const {
+                    title,
+                    body_lake,
+                    created_at,
+                    updated_at,
+                    book: { name }
+                } = res;
 
-                this.html = body_lake;
+                this.ascription = name;
                 this.title = title;
+                this.html = body_lake;
                 this.time.create = formatDate(created_at);
                 this.time.update = formatDate(updated_at);
             });
