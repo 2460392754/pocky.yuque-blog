@@ -88,7 +88,7 @@ export default {
 
 <style lang="less" scoped>
 .component-back-top {
-    position: absolute;
+    position: fixed;
     top: 0px;
     opacity: 0;
     left: 50%;
@@ -98,7 +98,7 @@ export default {
     border: 2px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
-    z-index: 2;
+    z-index: 9999;
     transition: all 0.5s;
 
     &.show {
