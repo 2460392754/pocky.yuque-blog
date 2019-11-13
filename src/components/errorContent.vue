@@ -1,13 +1,14 @@
 <template>
     <div class="component-error-content">
-        <div class="content-con">
+        <div class="content">
             <img :src="src" :alt="code" />
-            <div class="text-con">
+            <div class="text">
                 <h4>{{ code }}</h4>
                 <h5>{{ desc }}</h5>
             </div>
-
-            <Button type="primary" to="/">回到主页</Button>
+            <div class="btn-content">
+                <Button type="primary" to="/">回到主页</Button>
+            </div>
         </div>
     </div>
 </template>
@@ -37,7 +38,7 @@ export default {
     height: 100%;
     background: #f8f8f9;
 
-    .content-con {
+    .content {
         width: 700px;
         height: 600px;
         position: absolute;
@@ -51,7 +52,7 @@ export default {
             height: 100%;
         }
 
-        .text-con {
+        .text {
             position: absolute;
             left: 0px;
             top: 0px;
@@ -79,6 +80,11 @@ export default {
             position: absolute;
             right: 0px;
             bottom: 20px;
+        }
+
+        .btn-content {
+            text-align: center;
+            margin-top: 50px;
         }
     }
 }

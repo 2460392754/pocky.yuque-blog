@@ -1,6 +1,9 @@
 import Vue from 'vue';
+import router from '../router';
 import Axios from 'axios';
 import { httpConfig } from '../config';
+
+const app = new Vue({ router });
 
 // 创健 `axios` 实例
 const instance = Axios.create({
@@ -27,35 +30,13 @@ instance.interceptors.response.use(
         return res.data.data;
     },
     (err) => {
-        const { response } = err;
-        const content = handleResponse(response);
+        const { response = {} } = err;
+        const { status = '500', statusText = 'Internal server error' } = response;
 
-        throw new Error(content);
+        app.$router.push(`/${status}`);
+
+        throw new Error(statusText);
     }
 );
 
 export default instance;
-
-/**
- * 处理 `response`
- * @param {object|undefined} response
- * @return {string} 当前错误状态内容
- */
-function handleResponse(response) {
-    let content;
-
-    if (typeof response === 'undefined') {
-        content = 'Internal server error';
-    } else {
-        const { statusText, status } = response;
-        content = `code:${status}, msg:${statusText}`;
-    }
-
-    Vue.prototype.$Message.error({
-        content,
-        closable: true,
-        duration: 0
-    });
-
-    return content;
-}
