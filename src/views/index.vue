@@ -1,12 +1,14 @@
 <template>
     <div class="index-page">
-        <Card v-for="(item,index) of list" :key="'card-'+index">
-            <h2>{{item.name}}</h2>
+        <Spin v-if="!list" fix></Spin>
+
+        <Card v-for="(item, index) of list" :key="'card-' + index">
+            <h2>{{ item.name }}</h2>
             <Icon type="md-bookmarks" size="100" />
-            <p>文章篇数: {{item.items_count}}</p>
-            <p class="description">{{item.description}}</p>
-            <p class="create_time">创建时间: {{item.created_at}}</p>
-            <p class="update_time">更新时间: {{item.content_updated_at}}</p>
+            <p>文章篇数: {{ item.items_count }}</p>
+            <p class="description">{{ item.description }}</p>
+            <p class="create_time">创建时间: {{ item.created_at }}</p>
+            <p class="update_time">更新时间: {{ item.content_updated_at }}</p>
             <Button type="primary" @click="changeBtnClick(item.id)">进入</Button>
         </Card>
     </div>
@@ -14,7 +16,8 @@
 
 <script>
 import { getRepoListApi } from '@/api/repo';
-import { formatDate } from '../utils';
+import { formatDate, pipe } from '../utils';
+import { repoConfig } from '../config';
 
 export default {
     data() {
@@ -33,8 +36,24 @@ export default {
             this.list = this.$_formatCode(list);
         },
 
+        // 获取 仓库列表
         $_getRepoList() {
-            return getRepoListApi().then((res) => res.data);
+            return getRepoListApi().then((res) => {
+                const { data } = res;
+
+                return pipe(this.$_filterShowPrivate)(data);
+            });
+        },
+
+        /**
+         * 过滤掉 未发布的仓库，默认都显示
+         * @param {array} data
+         * @return {array} 已过滤的数据
+         */
+        $_filterShowPrivate(data) {
+            const { showPrivate } = repoConfig;
+
+            return data.filter((item) => showPrivate || item.public === 1);
         },
 
         /**
@@ -83,6 +102,8 @@ export default {
 .index-page {
     display: flex;
     flex-wrap: wrap;
+    position: relative;
+    min-height: 100%;
 
     .ivu-card {
         text-align: center;

@@ -1,9 +1,15 @@
 <template>
     <div class="doc-page">
-        <v-print-html v-if="isShow" :title="title" :content="html" />
-        <Divider />
-        <p>创建时间: {{time.create}}</p>
-        <p>更新时间: {{time.update}}</p>
+        <Spin v-if="!html" fix></Spin>
+        <!-- <v-back-top /> -->
+
+        <v-print-html
+            v-if="isShow"
+            :title="title"
+            :content="html"
+            :create-time="time.create"
+            :update-time="time.update"
+        />
     </div>
 </template>
 
@@ -11,10 +17,12 @@
 import { getDocInfoApi } from '../api/doc';
 import VPrintHtml from '../components/main/content/printHTML';
 import { formatDate } from '@/utils';
+// import VBackTop from '../components/main/content/backTop';
 
 export default {
     components: {
-        VPrintHtml
+        VPrintHtml,
+        // VBackTop
     },
 
     data() {
@@ -102,5 +110,7 @@ export default {
 .doc-page {
     width: 100%;
     max-width: 1200px;
+    position: relative;
+    min-height: 100%;
 }
 </style>

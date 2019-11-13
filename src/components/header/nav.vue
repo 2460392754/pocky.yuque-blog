@@ -5,21 +5,26 @@
             <span>首页</span>
         </MenuItem>
 
+        <MenuItem name="1" to="/about">
+            <Icon type="ios-home-outline" />
+            <span>关于我</span>
+        </MenuItem>
+
         <a target="_blank" href="https://github.com/2460392754/yuque-blog">
-            <MenuItem name="1">
+            <MenuItem name="2">
                 <Icon type="logo-github" />
                 <span>github</span>
             </MenuItem>
         </a>
 
         <a target="_blank" href="https://www.yuque.com/pocky">
-            <MenuItem name="2">
+            <MenuItem name="3">
                 <Icon type="ios-egg-outline" />
                 <span>语雀</span>
             </MenuItem>
         </a>
 
-        <MenuItem name="3">
+        <MenuItem name="4">
             <v-theme />
         </MenuItem>
     </div>

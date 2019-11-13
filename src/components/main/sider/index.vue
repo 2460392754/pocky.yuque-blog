@@ -27,6 +27,7 @@ export default {
 
     data() {
         return {
+            list: null,
             data: null,
             isShow: false,
             repoId: null,
@@ -44,6 +45,7 @@ export default {
                     this.isShow = true;
                     this.repoId = repoId;
                     this.docId = docId;
+
                     this.$_init();
                     this.$nextTick(() => {
                         this.activeName = docId;
@@ -65,10 +67,10 @@ export default {
     methods: {
         // 初始化
         async $_init() {
-            const list = await this.$_getRepoTocApi();
-
-            this.docId || (this.docId = list[0].slug);
-            this.data = this.$_formatCode(list);
+            this.list = await this.$_getRepoTocApi();
+            console.log(this.docId);
+            this.docId || (this.docId = this.$_getFirstDoc());
+            this.data = this.$_formatCode(this.list);
         },
 
         $_getRepoTocApi() {
@@ -99,6 +101,20 @@ export default {
         },
 
         /**
+         * 获取目录列表的第一篇文章
+         * @return {string} 文档id
+         */
+        $_getFirstDoc() {
+            for (const item of this.list) {
+                const { slug } = item;
+
+                if (slug !== '#') {
+                    return slug;
+                }
+            }
+        },
+
+        /**
          * 点击 `menuItem` 组件获取 `name` 值
          * @param {string} docId
          */
@@ -109,7 +125,7 @@ export default {
 };
 </script>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 .ivu-layout-sider {
     background: #fff;
     margin: 24px 0 24px -300px;

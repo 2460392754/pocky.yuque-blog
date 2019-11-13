@@ -1,5 +1,6 @@
 <template>
     <div class="layout-logo">
+        <img class="logo" alt="logo" src="@/assets/logo.png" />
         <span>语雀 blog</span>
     </div>
 </template>
@@ -8,11 +9,11 @@
 export default {};
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .layout-logo {
     color: #fff;
     background: rgba(0, 0, 0, 0.28);
-    width: 100px;
+    padding: 0 15px;
     height: 30px;
     border-radius: 3px;
     position: relative;
@@ -22,5 +23,10 @@ export default {};
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .logo {
+        width: 15px;
+        margin-right: 10px;
+    }
 }
 </style>

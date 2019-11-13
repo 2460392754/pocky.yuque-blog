@@ -2,7 +2,14 @@
     <div class="component-printHTML">
         <h1>{{title}}</h1>
         <Divider />
+
         <div v-highlightjs class="content" v-html="html"></div>
+
+        <Divider />
+        <div class="time">
+            <p>创建时间: {{createTime}}</p>
+            <p>更新时间: {{updateTime}}</p>
+        </div>
     </div>
 </template>
 
@@ -14,6 +21,14 @@ export default {
             default: 'title'
         },
         content: {
+            type: String,
+            default: ''
+        },
+        createTime: {
+            type: String,
+            default: ''
+        },
+        updateTime: {
             type: String,
             default: ''
         }
@@ -122,26 +137,17 @@ export default {
                 margin-bottom: 5px;
             }
 
-            &:before {
-                content: '#';
-                position: absolute;
-                transform: translateX(0px);
-                padding-right: 5px;
-                transition: all 0.5s;
-                opacity: 0;
-            }
-
             &:hover {
                 &:after {
                     width: 100%;
                 }
-
-                &:before {
-                    opacity: 1;
-                    transform: translateX(-100%);
-                }
             }
         }
+    }
+
+    .actionscript {
+        display: inline-block;
+        vertical-align: middle;
     }
 }
 </style>

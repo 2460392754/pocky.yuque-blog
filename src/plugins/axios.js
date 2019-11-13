@@ -45,7 +45,7 @@ function handleResponse(response) {
     let content;
 
     if (typeof response === 'undefined') {
-        content = '服务器链接失败';
+        content = 'Internal server error';
     } else {
         const { statusText, status } = response;
         content = `code:${status}, msg:${statusText}`;

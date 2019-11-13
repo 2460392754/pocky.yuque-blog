@@ -1,16 +1,20 @@
 <template>
     <div class="layout-doc" :class="[isShow ? 'is-show' : '']">
-        <h2>Toc</h2>
-        <v-menu :data="data" />
+        <v-scroll-bar>
+            <h2>Toc</h2>
+            <v-menu :data="data" />
+        </v-scroll-bar>
     </div>
 </template>
 
 <script>
 import VMenu from './menu';
+import VScrollBar from '../../scrollbar';
 
 export default {
     components: {
-        VMenu
+        VMenu,
+        VScrollBar
     },
 
     data() {
@@ -23,6 +27,7 @@ export default {
     watch: {
         '$route.path': {
             handler(path) {
+                this.data = null;
                 this.isShow = path === '/doc';
             },
             immediate: true

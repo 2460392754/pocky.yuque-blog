@@ -1,6 +1,6 @@
 /**
  * 时间格式化 `xxxx-xx-xx xx:xx:xx`
- * @param {*} str
+ * @param {*} str Date 字符串
  * @return {string}
  */
 export const formatDate = function(str) {
@@ -13,4 +13,16 @@ export const formatDate = function(str) {
     const seconds = String(date.getSeconds()).padStart(2, '0');
 
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+};
+
+/**
+ * 管道
+ * @param  {...function} args 函数列表
+ */
+export const pipe = function(...args) {
+    return function() {
+        return args.reduce((arg, fn) => {
+            return fn(arg);
+        }, ...arguments);
+    };
 };

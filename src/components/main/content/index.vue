@@ -1,6 +1,8 @@
 <template>
     <Layout>
         <Content>
+            <v-back-top :scroll-el="scrollEl" />
+
             <v-scroll-bar ref="scrollbar">
                 <router-view />
             </v-scroll-bar>
@@ -10,10 +12,18 @@
 
 <script>
 import VScrollBar from '../../scrollbar';
+import VBackTop from './backTop';
 
 export default {
     components: {
-        VScrollBar
+        VScrollBar,
+        VBackTop
+    },
+
+    data() {
+        return {
+            scrollEl: null
+        };
     },
 
     watch: {
@@ -25,6 +35,10 @@ export default {
         '$store.state.scrollTop'(val) {
             this.$refs.scrollbar.$_setScrollTop(val);
         }
+    },
+
+    mounted() {
+        this.scrollEl = this.$refs.scrollbar.geminiScrollbar._viewElement;
     }
 };
 </script>
