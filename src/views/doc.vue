@@ -14,9 +14,10 @@
 </template>
 
 <script>
-import { getDocInfoApi } from '../api/doc';
 import VPrintHtml from '../components/main/content/printHTML';
+import { getDocInfoApi } from '../api/doc';
 import { formatDate } from '@/utils';
+import { mapState } from 'vuex';
 
 export default {
     components: {
@@ -37,8 +38,14 @@ export default {
         };
     },
 
+    computed: {
+        ...mapState({
+            $storeDocId: 'docId'
+        })
+    },
+
     watch: {
-        '$store.state.docId': {
+        $storeDocId: {
             handler(docId) {
                 docId && this.$_setUrlQuery(docId);
             },

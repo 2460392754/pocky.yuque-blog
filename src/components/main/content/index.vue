@@ -13,6 +13,7 @@
 <script>
 import VScrollBar from '../../scrollbar';
 import VBackTop from './backTop';
+import { mapState } from 'vuex';
 
 export default {
     components: {
@@ -26,13 +27,17 @@ export default {
         };
     },
 
+    computed: {
+        ...mapState(['docRenderDone', 'scrollTop'])
+    },
+
     watch: {
-        '$store.state.docRenderDone'() {
+        docRenderDone() {
             this.$nextTick(() => {
                 this.$refs.scrollbar.geminiScrollbar.update();
             });
         },
-        '$store.state.scrollTop'(val) {
+        scrollTop(val) {
             this.$refs.scrollbar.$_setScrollTop(val);
         }
     },

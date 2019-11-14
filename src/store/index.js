@@ -4,6 +4,8 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+    strict: process.env.NODE_ENV !== 'production',
+
     state: {
         docId: null,
         docRenderDone: 0,
@@ -22,5 +24,5 @@ export default new Vuex.Store({
         setScrollTop(state, n) {
             state.scrollTop = n;
         }
-    }
+    },
 });

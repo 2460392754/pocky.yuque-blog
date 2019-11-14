@@ -10,6 +10,7 @@
 <script>
 import VMenu from './menu';
 import VScrollBar from '../../scrollbar';
+import { mapState } from 'vuex';
 
 export default {
     components: {
@@ -24,6 +25,10 @@ export default {
         };
     },
 
+    computed: {
+        ...mapState(['docRenderDone'])
+    },
+
     watch: {
         '$route.path': {
             handler(path) {
@@ -33,7 +38,7 @@ export default {
             immediate: true
         },
 
-        '$store.state.docRenderDone'() {
+        docRenderDone() {
             this.$nextTick(this.$_init);
         }
     },
