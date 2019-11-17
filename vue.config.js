@@ -63,9 +63,9 @@ module.exports = {
             });
 
             // svg优化
-            const svgRule = config.module.rule('svg');
-            svgRule.uses.clear();
-            svgRule.use('vue-svg-loader').loader('vue-svg-loader');
+            // const svgRule = config.module.rule('svg');
+            // svgRule.uses.clear();
+            // svgRule.use('vue-svg-loader').loader('vue-svg-loader');
         }
     },
 
