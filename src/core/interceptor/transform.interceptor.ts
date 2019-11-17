@@ -8,7 +8,7 @@ export class TransformInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         return next.handle().pipe(
             map((res) => {
-                const { data, headers } = res || {};
+                const { data = null, headers ={}} = res;
                 const host = context.switchToHttp();
                 const response = host.getResponse<Response>();
 
