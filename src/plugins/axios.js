@@ -8,7 +8,7 @@ const app = new Vue({ router });
 // 创健 `axios` 实例
 const instance = Axios.create({
     baseURL: httpConfig.baseURL,
-    timeout: 5000
+    timeout: 15000
 });
 
 // 全局请求拦截器
@@ -26,6 +26,7 @@ instance.interceptors.request.use(
 // 全局响应拦截器
 instance.interceptors.response.use(
     (res, config) => {
+        // console.log(res)
         // return res.data;
         return res.data.data;
     },
