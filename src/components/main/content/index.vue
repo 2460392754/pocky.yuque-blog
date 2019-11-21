@@ -57,6 +57,7 @@ export default {
         padding: 24px;
         min-height: 280px;
         background: #fff;
+        height: max-content;
     }
 }
 </style>
