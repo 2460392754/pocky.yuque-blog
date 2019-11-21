@@ -1,7 +1,7 @@
 export const isProduction = process.env.NODE_ENV === 'production';
 
 export const httpConfig = {
-    baseURL: isProduction ? 'http://122.51.205.133:3000' :'http://localhost:3000',
+    baseURL: isProduction ? 'https://api.blog.2460392754.top' :'http://localhost:3000',
     token: '5jWbSjDNzQ2mYC26XhHLlC1AsDb3ykbBvoybQGw3',
     userId: 342993
 };
