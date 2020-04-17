@@ -10,7 +10,6 @@
         "outDir": "./dist", // 重定向输出目录
         "baseUrl": "./", // 解析非相对模块名的基准目录
         "incremental": true, // 更快地进行后续构建
-        "moduleResolution": "node"
     },
     "exclude": ["node_modules", "dist"] // 不包含的编译目录
 }
